@@ -104,6 +104,7 @@
         var sx;
         var sy;
         el.on( "touchstart", function ( se ) {
+            se.preventDefault();
             sx = el.x;
             sy = el.y;
             callbacks && callbacks.start && callbacks.start( se );
@@ -147,13 +148,10 @@
         }
     }
 
-    function Loader() {
-
-    }
-
     function removeFromDom( el ) {
         el.parentNode && el.parentNode.removeChild( el );
     }
+
 
     window.w = {
         loopArray : loopArray,
