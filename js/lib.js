@@ -108,12 +108,13 @@
             se.preventDefault();
             sx = el.x;
             sy = el.y;
+            var sex = se.touches[0].pageX, sey = se.touches[0].pageY;
             callbacks && callbacks.start && callbacks.start( se );
             var move = document.on( "touchmove", function ( me ) {
-                if ( Math.pow( me.touches[0].pageX - se.touches[0].pageX, 2 ) + Math.pow( me.touches[0].pageY - se.touches[0].pageY, 2 ) > 9 ) {
+                if ( Math.pow( me.touches[0].pageX - sex, 2 ) + Math.pow( me.touches[0].pageY - sey, 2 ) > 9 ) {
                     callbacks && callbacks.move && callbacks.move( {
-                        dx : me.touches[0].pageX - se.touches[0].pageX,
-                        dy : me.touches[0].pageY - se.touches[0].pageY,
+                        dx : me.touches[0].pageX - sex,
+                        dy : me.touches[0].pageY - sey,
                         moveHandle : move,
                         endHandle : end
                     } );
@@ -127,8 +128,8 @@
                 move.remove();
                 end.remove();
                 callbacks.end && callbacks.end( {
-                    dx : endx - se.touches[0].pageX,
-                    dy : endy - se.touches[0].pageY
+                    dx : endx - sex,
+                    dy : endy - sey
                 } );
             } );
         } );

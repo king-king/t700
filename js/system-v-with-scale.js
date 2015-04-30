@@ -68,7 +68,7 @@
                     } );
                     curPage.transition( {
                         "-webkit-transform" : "translate3d(0," + height / 2 + "px,0) scale(0.5)"
-                    }, 0.2, "linear", 0 );
+                    }, 0.15, "linear", 0 );
                 }
                 else {
                     curIndex = (++curIndex + pages.length) % pages.length;
@@ -85,7 +85,7 @@
                     } );
                     curPage.transition( {
                         "-webkit-transform" : "translate3d(0,-" + height / 2 + "px,0) scale(0.5)"
-                    }, 0.2, "linear", 0 );
+                    }, 0.15, "linear", 0 );
                 }
             }
         } );
