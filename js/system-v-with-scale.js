@@ -54,10 +54,12 @@
             },
             end : function ( e ) {
                 if ( e.dy > 0 ) {
-                    curIndex--;
+                    curIndex = (--curIndex + pages.length) % pages.length;
+                    container.classList.add( "lock" );
                     prePage.transition( {
                         "-webkit-transform" : "translate3d(0,0,0)"
                     }, 0.2, "linear", 0, function () {
+                        container.classList.remove( "lock" );
                         w.removeFromDom( curPage );
                         w.removeFromDom( nextPage );
                         curPage = prePage;
@@ -69,7 +71,21 @@
                     }, 0.2, "linear", 0 );
                 }
                 else {
-                    curIndex++;
+                    curIndex = (++curIndex + pages.length) % pages.length;
+                    container.classList.add( "lock" );
+                    nextPage.transition( {
+                        "-webkit-transform" : "translate3d(0,0,0)"
+                    }, 0.2, "linear", 0, function () {
+                        container.classList.remove( "lock" );
+                        w.removeFromDom( curPage );
+                        w.removeFromDom( prePage );
+                        curPage = nextPage;
+                        curPage.sy = 0;
+                        console.log( "end" );
+                    } );
+                    curPage.transition( {
+                        "-webkit-transform" : "translate3d(0,-" + height / 2 + "px,0) scale(0.5)"
+                    }, 0.2, "linear", 0 );
                 }
             }
         } );
