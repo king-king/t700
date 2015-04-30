@@ -31,17 +31,26 @@
         var curIndex = 0;
         var curPage = pages[0], prePage, nextPage;
         curPage.sy = 0;
+        prePage = getPage( curIndex - 1 );
+        nextPage = getPage( curIndex + 1 );
+        container.appendChild( translate( prePage, {x : 0, y : -container.offsetHeight, z : 0} ) );
+        container.appendChild( translate( nextPage, {x : 0, y : container.offsetHeight, z : 0} ) );
+        var prey = -container.offsetHeight;
+        var cury = 0;
+        var nexty = container.offsetHeight;
         w.dragListener( container, {
             start : function () {
-                prePage = getPage( curIndex - 1 );
-                nextPage = getPage( curIndex + 1 );
-                container.appendChild( translate( prePage, {x : 0, y : -container.offsetHeight, z : 0} ) );
-                container.appendChild( translate( nextPage, {x : 0, y : container.offsetHeight, z : 0} ) );
+                prey = prePage.sy;
+                cury = curPage.sy;
+                nexty = nextPage.sy;
             },
             move : function ( e ) {
-                translate( curPage, {x : 0, y : curPage.sy + e.dy, z : 0} );
-                //translate( prePage, {x : 0, y : prePage.sy + e.dy, z : 0} );
-                //translate( nextPage, {x : 0, y : nextPage.sy + e.dy, z : 0} );
+                translate( curPage, {x : 0, y : cury + e.dy, z : 0} );
+                translate( prePage, {x : 0, y : prey + e.dy, z : 0} );
+                translate( nextPage, {x : 0, y : nexty + e.dy, z : 0} );
+            },
+            end : function ( e ) {
+
             }
         } );
     }
