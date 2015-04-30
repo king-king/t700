@@ -103,6 +103,7 @@
     function dragListener( el, callbacks, isAction ) {
         var sx;
         var sy;
+        var endx, endy;
         el.on( "touchstart", function ( se ) {
             se.preventDefault();
             sx = el.x;
@@ -119,13 +120,15 @@
                     isAction && (el.x = me.touches[0].pageX - se.touches[0].pageX + sx);
                     isAction && (el.y = me.touches[0].pageY - se.touches[0].pageY + sy);
                 }
+                endx = me.touches[0].pageX;
+                endy = me.touches[0].pageY;
             } );
             var end = document.on( "touchend", function ( ee ) {
                 move.remove();
                 end.remove();
                 callbacks.end && callbacks.end( {
-                    dx : ee.pageX - se.touches[0].pageX,
-                    dy : ee.pageY - se.touches[0].pageY
+                    dx : endx - se.touches[0].pageX,
+                    dy : endy - se.touches[0].pageY
                 } );
             } );
         } );
@@ -151,7 +154,6 @@
     function removeFromDom( el ) {
         el.parentNode && el.parentNode.removeChild( el );
     }
-
 
     window.w = {
         loopArray : loopArray,
