@@ -19,13 +19,15 @@
     } );
 
     function translate( el, arg ) {
-        el.style.setProperty( "transform", "translate3d(" + arg.x + "px, " + arg.y + "px, " + arg.z + "px)", null );
+        el.style.setProperty( "transform", "translate3d(" + arg.x + "px, " + arg.y + "px, " + arg.z + "px)" + (arg.scale ? "scale(" + arg.scale + ")" : ""), null );
         el.sx = arg.x;
         el.sy = arg.y;
         el.sz = arg.z;
+        arg.scale && (el.sscale = arg.scale);
         return el;
     }
 
+    var height = container.offsetHeight;
 
     function build() {
         var curIndex = 0;
@@ -45,7 +47,8 @@
                 nexty = nextPage.sy;
             },
             move : function ( e ) {
-                translate( curPage, {x : 0, y : cury + e.dy, z : 0} );
+                var scale = 1 - Math.abs( curPage.sy + e.dy ) / height / 3;
+                translate( curPage, {x : 0, y : (cury + e.dy) / 2, z : 0, scale : scale} );
                 translate( prePage, {x : 0, y : prey + e.dy, z : 0} );
                 translate( nextPage, {x : 0, y : nexty + e.dy, z : 0} );
             },
