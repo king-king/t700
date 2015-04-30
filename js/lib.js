@@ -104,7 +104,12 @@
         var sx;
         var sy;
         var endx, endy;
+        var istouching = false;
         el.on( "touchstart", function ( se ) {
+            if ( istouching ) {
+                return;
+            }
+            istouching = !istouching;
             se.preventDefault();
             sx = el.x;
             sy = el.y;
@@ -124,13 +129,16 @@
                 endx = me.touches[0].pageX;
                 endy = me.touches[0].pageY;
             } );
-            var end = document.on( "touchend", function ( ee ) {
+            var end = document.on( "touchend", function () {
                 move.remove();
                 end.remove();
-                callbacks.end && callbacks.end( {
-                    dx : endx - sex,
-                    dy : endy - sey
-                } );
+                if ( istouching ) {
+                    callbacks.end && callbacks.end( {
+                        dx : endx - sex,
+                        dy : endy - sey
+                    } );
+                    istouching = !istouching;
+                }
             } );
         } );
     }
