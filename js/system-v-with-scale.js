@@ -15,7 +15,7 @@
 	}
 
 	w.loopArray( pages, function ( page, i ) {
-		i != 0 && removeElement( page );
+		removeElement( page );
 	} );
 
 	function translate( el, arg ) {
@@ -32,6 +32,9 @@
 	function build() {
 		var curIndex = 0;
 		var curPage = pages[0], prePage, nextPage;
+		container.appendChild( curPage );
+		curPage.onCut && curPage.onCut();
+		curPage.classList.add( "animate" );
 		curPage.sy = 0;
 		var prey = -container.offsetHeight;
 		var cury = 0;
@@ -62,9 +65,12 @@
 						container.classList.remove( "lock" );
 						w.removeFromDom( curPage );
 						w.removeFromDom( nextPage );
+						curPage.onRemove && curPage.onRemove();
+						curPage.classList.remove( "animate" );
 						curPage = prePage;
 						curPage.sy = 0;
-						console.log( "end" );
+						curPage.onCut && curPage.onCut();
+						curPage.classList.add( "animate" );
 					} );
 					curPage.transition( {
 						"-webkit-transform" : "translate3d(0," + height / 2 + "px,0) scale(0.5)"
@@ -79,9 +85,12 @@
 						container.classList.remove( "lock" );
 						w.removeFromDom( curPage );
 						w.removeFromDom( prePage );
+						curPage.onRemove && curPage.onRemove();
+						curPage.classList.remove( "animate" );
 						curPage = nextPage;
 						curPage.sy = 0;
-						console.log( "end" );
+						curPage.onCut && curPage.onCut();
+						curPage.classList.add( "animate" );
 					} );
 					curPage.transition( {
 						"-webkit-transform" : "translate3d(0,-" + height / 2 + "px,0) scale(0.5)"
