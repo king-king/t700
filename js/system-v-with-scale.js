@@ -30,6 +30,7 @@
 	var height = container.offsetHeight;
 
 	function build() {
+		removeElement( document.querySelector( ".page-loading" ) );
 		var curIndex = 0;
 		var curPage = pages[0], prePage, nextPage;
 		container.appendChild( curPage );
