@@ -72,6 +72,15 @@
     -webkit-animation: spin 1.72s linear infinite, opa 5.25s ease-in-out infinite alternate;
 }
 
+.container, .page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+}
+
 /*Ðý×ª¶¯»­*/
 @-webkit-keyframes spin {
     0% {
