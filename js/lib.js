@@ -100,23 +100,35 @@
         }
     } );
 
+    function log( el, text ) {
+        document.querySelector( ".container" );
+        var span = document.createElement( "span" );
+        span.innerHTML = text + "<br>";
+        el.appendChild( span );
+    }
+
     function dragListener( el, callbacks, isAction ) {
         var sx;
         var sy;
         var endx, endy;
         var istouching = false;
+        var sex, sey;
+        var move = {}, end = {};
         el.on( "touchstart", function ( se ) {
+            log( document.querySelector( ".container" ), "touch" );
             if ( istouching ) {
+                log( document.querySelector( ".container" ), "touching" );
                 return;
             }
             var isMove = false;
-            istouching = !istouching;
+            istouching = true;
             se.preventDefault();
             sx = el.x;
             sy = el.y;
-            var sex = se.touches[0].pageX, sey = se.touches[0].pageY;
+            sex = se.touches[0].pageX;
+            sey = se.touches[0].pageY;
             callbacks && callbacks.start && callbacks.start( se );
-            var move = document.on( "touchmove", function ( me ) {
+            move = document.on( "touchmove", function ( me ) {
                 if ( Math.pow( me.touches[0].pageX - sex, 2 ) + Math.pow( me.touches[0].pageY - sey, 2 ) > 9 ) {
                     isMove = true;
                     callbacks && callbacks.move && callbacks.move( {
@@ -131,7 +143,7 @@
                 endx = me.touches[0].pageX;
                 endy = me.touches[0].pageY;
             } );
-            var end = document.on( "touchend", function () {
+            end = document.on( "touchend", function () {
                 move.remove();
                 end.remove();
                 if ( istouching && isMove ) {
@@ -177,4 +189,5 @@
         loadImage : loadImage
     }
 
-})();
+})
+();
