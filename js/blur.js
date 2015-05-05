@@ -254,7 +254,7 @@
 
         if ( isNaN( radius ) || radius < 1 ) return;
 
-        stackBlurCanvasRGB( canvas, width / 2, height / 2, width, height, radius );
+        stackBlurCanvasRGB( canvas, 0, 0, width, height, radius );
 
         return canvas;
     };

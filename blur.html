@@ -6,6 +6,7 @@
 </head>
 <body>
 <canvas width="400" height="400"></canvas>
+<script src="js/blur.js"></script>
 <script>
     (function () {
 
@@ -13,16 +14,22 @@
         var ctx = canvas.getContext( "2d" );
         var w = 400, h = 400;
         var img = new Image();
-        img.src = "../img/1.jpg";
+        img.src = "img/1.jpg";
+//        img.onload = function () {
+//            var s = (new Date()).getTime();
+//            ctx.drawImage( img, 0, 0, w, h );
+//            var data = ctx.getImageData( 0, 0, w, h );
+//            ctx.clearRect( 0, 0, w, h );
+//            var g = (new Date()).getTime();
+//            data.data = filter( data.data, w, h );
+//            console.log( (new Date()).getTime() - g );
+//            ctx.putImageData( data, 0, 0 );
+//            console.log( (new Date()).getTime() - s );
+//        };
+
         img.onload = function () {
             var s = (new Date()).getTime();
-            ctx.drawImage( img, 0, 0, w, h );
-            var data = ctx.getImageData( 0, 0, w, h );
-            ctx.clearRect( 0, 0, w, h );
-            var g = (new Date()).getTime();
-            data.data = filter( data.data, w, h );
-            console.log( (new Date()).getTime() - g );
-            ctx.putImageData( data, 0, 0 );
+            document.body.appendChild( blur( img, 10, null, null ) );
             console.log( (new Date()).getTime() - s );
         };
 
