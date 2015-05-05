@@ -189,5 +189,4 @@
         loadImage : loadImage
     }
 
-})
-();
+})();
