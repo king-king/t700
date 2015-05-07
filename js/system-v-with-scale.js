@@ -58,7 +58,13 @@
             },
             end : function ( e ) {
                 if ( e.dy > 0 ) {
+                    // 向下滑，把前一页滑了出来
                     curIndex = (--curIndex + pages.length) % pages.length;
+                    //w.animate( 200, function ( arg ) {
+                    //    prePage.css()
+                    //}, function () {
+                    //
+                    //} );
                     prePage.transition( {
                         "-webkit-transform" : "translate3d(0,0,0)"
                     }, 0.2, "linear", 0, function () {

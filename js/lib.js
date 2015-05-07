@@ -114,6 +114,9 @@
         el.istouching = false;
         var sex, sey;
         var move = {}, end = {};
+        document.on( "touchstart", function ( e ) {
+            e.preventDefault();
+        }, true );
         el.on( "touchstart", function ( se ) {
             se.preventDefault();
             log( document.querySelector( ".container" ), "touch" );
@@ -179,6 +182,22 @@
         el.parentNode && el.parentNode.removeChild( el );
     }
 
+    function animate( duration, doA, callback ) {
+        var start = (new Date()).getTime();
+        doAnimate();
+        function doAnimate() {
+            var cur = (new Date()).getTime();
+            if ( cur - start <= duration ) {
+                doA( {progress : (cur - start) / duration} );
+                setTimeout( doAnimate, 1000 / 60 );
+            }
+            else {
+                callback();
+            }
+        }
+    }
+
+
     window.w = {
         loopArray : loopArray,
         loop : loop,
@@ -187,7 +206,9 @@
 
         dragListener : dragListener,
 
-        loadImage : loadImage
+        loadImage : loadImage,
+
+        animate : animate
     }
 
 })();
