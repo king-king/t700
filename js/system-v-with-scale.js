@@ -59,7 +59,6 @@
             end : function ( e ) {
                 if ( e.dy > 0 ) {
                     curIndex = (--curIndex + pages.length) % pages.length;
-                    container.classList.add( "lock" );
                     prePage.transition( {
                         "-webkit-transform" : "translate3d(0,0,0)"
                     }, 0.2, "linear", 0, function () {

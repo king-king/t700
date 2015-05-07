@@ -100,12 +100,12 @@
         }
     } );
 
-    function log( el, text ) {
+    window.log = function ( el, text ) {
         document.querySelector( ".container" );
         var span = document.createElement( "span" );
         span.innerHTML = text + "<br>";
         el.appendChild( span );
-    }
+    };
 
     function dragListener( el, callbacks, isAction ) {
         var sx;
@@ -145,6 +145,7 @@
                 endy = me.touches[0].pageY;
             } );
             end = document.on( "touchend", function () {
+                log( document.querySelector( ".container" ), "touchend" );
                 move.remove();
                 end.remove();
                 if ( el.istouching && isMove ) {
