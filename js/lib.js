@@ -129,8 +129,8 @@
             el.istouching = true;
             sx = el.x;
             sy = el.y;
-            sex = se.touches[0].pageX;
-            sey = se.touches[0].pageY;
+            endx = sex = se.touches[0].pageX;
+            endy = sey = se.touches[0].pageY;
             callbacks && callbacks.start && callbacks.start( se );
             move = document.on( "touchmove", function ( me ) {
                 if ( Math.pow( me.touches[0].pageX - sex, 2 ) + Math.pow( me.touches[0].pageY - sey, 2 ) > 9 ) {
@@ -156,6 +156,9 @@
                         dx : endx - sex,
                         dy : endy - sey
                     } );
+                }
+                if ( endy - sey == 0 ) {
+                    el.istouching = false;
                 }
             } );
         } );
