@@ -106,7 +106,10 @@
         span.innerHTML = text + "<br>";
         el.appendChild( span );
     };
-
+    document.on( "touchstart", function ( e ) {
+        log( document.querySelector( ".container" ), "document touch" );
+        e.preventDefault();
+    }, true );
     function dragListener( el, callbacks, isAction ) {
         var sx;
         var sy;
@@ -114,9 +117,6 @@
         el.istouching = false;
         var sex, sey;
         var move = {}, end = {};
-        document.on( "touchstart", function ( e ) {
-            e.preventDefault();
-        }, true );
         el.on( "touchstart", function ( se ) {
             se.preventDefault();
             log( document.querySelector( ".container" ), "touch" );
