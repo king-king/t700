@@ -111,18 +111,19 @@
         var sx;
         var sy;
         var endx, endy;
-        var istouching = false;
+        el.istouching = false;
         var sex, sey;
         var move = {}, end = {};
         el.on( "touchstart", function ( se ) {
+            se.preventDefault();
             log( document.querySelector( ".container" ), "touch" );
-            if ( istouching ) {
+            log( document.querySelector( ".container" ), " " + el.istouching );
+            if ( el.istouching ) {
                 log( document.querySelector( ".container" ), "touching" );
                 return;
             }
             var isMove = false;
-            istouching = true;
-            se.preventDefault();
+            el.istouching = true;
             sx = el.x;
             sy = el.y;
             sex = se.touches[0].pageX;
@@ -146,13 +147,12 @@
             end = document.on( "touchend", function () {
                 move.remove();
                 end.remove();
-                if ( istouching && isMove ) {
+                if ( el.istouching && isMove ) {
                     callbacks.end && callbacks.end( {
                         dx : endx - sex,
                         dy : endy - sey
                     } );
                 }
-                istouching = false;
             } );
         } );
     }

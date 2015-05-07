@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    (function () {
+        var canvas = document.createElement( "canvas" );
+        canvas.width = canvas.height = 400;
+        var gc = canvas.getContext( "2d" );
+        var w = h = 400;
+
+        var img = new Image();
+        img.src = "../img/4.jpg";
+        img.onload = function () {
+            gc.drawImage( img, 0, 0, w, h );
+            var imgdata = gc.getImageData( 0, 0, w, h );
+            gc.putImageData( sobel( imgdata.data ), 0, 0 );
+            document.body.appendChild( canvas );
+        };
+
+        var xr = [[-1, 0], [-2, 0], [-2, 0], [-2, 0]];
+        var po;
+
+        function sobel( data ) {
+            var index, preidnex;
+            var nd = gc.createImageData( 400, 400 );
+            for ( var y = 0; y < h; y++ ) {
+                for ( var x = 0; x < w; x++ ) {
+                    index = (y * w + x) * 4;
+                    for ( var i = 0; i < 4; i++ ) {
+                        po = getPoint( data, x, y, p[i][0], p[i][1] );
+                        nd.data[index] += po.r;
+                        nd.data[index + 1] += po.g;
+                        nd.data[index + 2] += po.b;
+                    }
+                    nd.data[index] -= data[index] * 4;
+                    nd.data[index + 1] -= data[index + 1] * 4;
+                    nd.data[index + 2] -= data[index + 2] * 4;
+                    nd.data[index + 3] = 255;
+                }
+            }
+            return nd;
+        }
+
+
+        function getPoint( data, x, y, dx, dy ) {
+            if ( x + dx < w && x + dx >= 0 && y + dy >= 0 && y + dy < h ) {
+                var index = ((y + dy) * w + x + dx) * 4;
+                return {
+                    r : data[index],
+                    g : data[index + 1],
+                    b : data[index + 2]
+                }
+            }
+            else {
+                return {
+                    r : 0,
+                    g : 0,
+                    b : 0
+                }
+            }
+        }
+
+    })();
+</script>
+</body>
+</html>

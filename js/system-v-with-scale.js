@@ -63,7 +63,7 @@
                     prePage.transition( {
                         "-webkit-transform" : "translate3d(0,0,0)"
                     }, 0.2, "linear", 0, function () {
-                        container.classList.remove( "lock" );
+                        container.istouching = false;
                         w.removeFromDom( curPage );
                         w.removeFromDom( nextPage );
                         curPage.onRemove && curPage.onRemove();
@@ -79,11 +79,10 @@
                 }
                 else {
                     curIndex = (++curIndex + pages.length) % pages.length;
-                    container.classList.add( "lock" );
                     nextPage.transition( {
                         "-webkit-transform" : "translate3d(0,0,0)"
                     }, 0.2, "linear", 0, function () {
-                        container.classList.remove( "lock" );
+                        container.istouching = false;
                         w.removeFromDom( curPage );
                         w.removeFromDom( prePage );
                         curPage.onRemove && curPage.onRemove();
