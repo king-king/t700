@@ -106,10 +106,10 @@
         span.innerHTML = text + "<br>";
         el.appendChild( span );
     };
-    //document.on( "touchstart", function ( e ) {
-    //    log( document.querySelector( ".container" ), "document touch" );
-    //    e.preventDefault();
-    //}, true );
+    document.on( "touchstart", function ( e ) {
+        log( document.querySelector( ".container" ), "document touch" );
+        e.preventDefault();
+    }, true );
     function dragListener( el, callbacks, isAction ) {
         var sx;
         var sy;
@@ -118,7 +118,6 @@
         var sex, sey;
         var move = {}, end = {};
         el.on( "touchstart", function ( se ) {
-            se.preventDefault();
             log( document.querySelector( ".container" ), "touch" );
             log( document.querySelector( ".container" ), " " + el.istouching );
             if ( el.istouching ) {
