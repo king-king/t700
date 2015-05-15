@@ -60,27 +60,30 @@
                 if ( e.dy > 0 ) {
                     // 向下滑，把前一页滑了出来
                     curIndex = (--curIndex + pages.length) % pages.length;
-                    //w.animate( 200, function ( arg ) {
-                    //    prePage.css()
-                    //}, function () {
-                    //
-                    //} );
-                    prePage.transition( {
-                        "-webkit-transform" : "translate3d(0,0,0)"
-                    }, 0.2, "linear", 0, function () {
-                        container.istouching = false;
-                        w.removeFromDom( curPage );
-                        w.removeFromDom( nextPage );
-                        curPage.onRemove && curPage.onRemove();
-                        curPage.classList.remove( "animate" );
-                        curPage = prePage;
-                        curPage.sy = 0;
-                        curPage.onCut && curPage.onCut();
-                        curPage.classList.add( "animate" );
+
+                    w.animate( 200, function ( arg ) {
+                        prePage.css( {
+                            "-webkit-transform" : "translate3d(0," + 1 + "px,0)"
+                        } )
+                    }, function () {
+
                     } );
-                    curPage.transition( {
-                        "-webkit-transform" : "translate3d(0," + height / 2 + "px,0) scale(0.5)"
-                    }, 0.15, "linear", 0 );
+                    //prePage.transition( {
+                    //    "-webkit-transform" : "translate3d(0,0,0)"
+                    //}, 0.2, "linear", 0, function () {
+                    //    container.istouching = false;
+                    //    w.removeFromDom( curPage );
+                    //    w.removeFromDom( nextPage );
+                    //    curPage.onRemove && curPage.onRemove();
+                    //    curPage.classList.remove( "animate" );
+                    //    curPage = prePage;
+                    //    curPage.sy = 0;
+                    //    curPage.onCut && curPage.onCut();
+                    //    curPage.classList.add( "animate" );
+                    //} );
+                    //curPage.transition( {
+                    //    "-webkit-transform" : "translate3d(0," + height / 2 + "px,0) scale(0.5)"
+                    //}, 0.15, "linear", 0 );
                 }
                 else {
                     curIndex = (++curIndex + pages.length) % pages.length;
