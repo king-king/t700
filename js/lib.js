@@ -126,6 +126,7 @@
             }
             var isMove = false;
             el.istouching = true;
+            se.preventDefault();
             sx = el.x;
             sy = el.y;
             endx = sex = se.touches[0].pageX;
