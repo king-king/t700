@@ -106,10 +106,12 @@
         span.innerHTML = text + "<br>";
         el.appendChild( span );
     };
-    document.on( "touchstart", function ( e ) {
-        log( document.querySelector( ".container" ), "document touch" );
-        e.preventDefault();
-    }, true );
+    document.addEventListener( "touchstart", function ( e ) {
+        if ( e.target.nodeName.toLowerCase() === "img" ) {
+            e.preventDefault();
+        }
+    }, false );
+
     function dragListener( el, callbacks, isAction ) {
         var sx;
         var sy;
