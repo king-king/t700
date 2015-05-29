@@ -12,12 +12,16 @@
     display: none !important;
 }
 
-.page {
+.body, .page {
     position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
+}
+
+.body {
+    overflow: hidden;
 }
 
 .page-0 {
