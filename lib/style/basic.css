@@ -1,0 +1,23 @@
+.page {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.page-0 {
+    background: blueviolet;
+}
+
+.page-1 {
+    background: darkolivegreen;
+}
+
+.page-2 {
+    background: #333;
+}
+
+.page-3 {
+    background: cornflowerblue;
+}
