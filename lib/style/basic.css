@@ -20,6 +20,10 @@
     left: 0;
 }
 
+.page {
+    z-index: 2;
+}
+
 .body {
     overflow: hidden;
 }
