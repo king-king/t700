@@ -31,16 +31,28 @@
 
 .page-0 {
     background: blueviolet;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
 }
 
 .page-1 {
     background: darkolivegreen;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
 }
 
 .page-2 {
     background: orangered;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
 }
 
 .page-3 {
     background: cornflowerblue;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
 }
