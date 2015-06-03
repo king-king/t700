@@ -26,6 +26,19 @@
 * onDrag：可以在该元素上监听拖拽事件，如果需要物体移动，需要重写onMove、onEnd函数。
 * css：可以为元素设定css
 
+### basic.js 中的接口
+该文件中的接口都在util名字空间下
+
+```js
+util.insertCSSRules({
+     ".selector" : {
+        background : "red"
+     },
+     ".selector2" : {
+        "border-radius" : "50px"
+     }
+})
+```
 
 
 
