@@ -1,0 +1,63 @@
+.loading-page {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    background: #000;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.hide {
+    display: none !important;
+}
+
+.body, .page {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.page {
+    z-index: 2;
+}
+
+.body {
+    overflow: hidden;
+    background: #1A1A20;
+}
+
+.page-0 {
+    background: blueviolet;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.page-1 {
+    background: darkolivegreen;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.page-2 {
+    background: orangered;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.page-3 {
+    background: cornflowerblue;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+}
