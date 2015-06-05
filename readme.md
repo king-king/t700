@@ -20,24 +20,24 @@
 
 ### 扩展：每个Node元素都具备的方法
 
-#### remove()：用来从页面上移除该元素，不必关心该DOM元素是否在页面上。
+###### remove()：用来从页面上移除该元素，不必关心该DOM元素是否在页面上。
 ```js
 var tar=document.querySelector(".tar");
 tar.remove();// 将tar从页面移除
 tar.remove();// 虽然tar已经从页面移除，但是只要tar引用还有效，调用remove()不会报错，可以省去检查tar是否在页面中
 ```
-#### bindEvent(type,listener,useCapture)：为该元素绑定事件，返回值具有remove方法，可以移除绑定的事件。
+###### bindEvent(type,listener,useCapture)：为该元素绑定事件，返回值具有remove方法，可以移除绑定的事件。
 ```js
 var handler=el.bindEvent("touchstart",function(){
     /*do something*/
     handler.remove();// 只执行一次
 },false);
 ```
-#### transform(x、y、z、rotate、scale)：可以改变元素的x、y、z、rotate、scale5个属性。
+###### transform(x、y、z、rotate、scale)：可以改变元素的x、y、z、rotate、scale5个属性。
 ```js
 el.transform(40,40,40,45,1.3);//x、y、z、rotate、scale可以有选择性的为null
 ```
-#### onDrag(object)：可以在该元素上监听拖拽事件，如果需要物体移动，需要重写onMove、onEnd函数。
+###### onDrag(object)：可以在该元素上监听拖拽事件，如果需要物体移动，需要重写onMove、onEnd函数。
 ```js
 el.wx=el.wy=0;
 el.onDrag({
@@ -45,17 +45,17 @@ el.onDrag({
         el.transform(el.wx+=arg.dx,el.wy+=arg.dy,0);// move the el
     },
     onEnd:function(){
-        /* do something to clean*/
+        /* do something */
     }
 });
 ```
-#### onTap(callback)：监听点击事件。
+###### onTap(callback)：监听点击事件。
 ```js
 el.onTap(function(){
     /* do something */
 });
 ```
-#### css(object)：可以为元素设定css。
+###### css(object)：可以为元素设定css。
 ```js
 el.css({
     background:"red",
@@ -72,7 +72,7 @@ el.css({
 ### basic.js 中的接口
 该文件中的接口都在util名字空间下
 
-#### insertCSSRules(obj)
+###### insertCSSRules(obj)
 ```js
 util.insertCSSRules({
      ".selector" : {
