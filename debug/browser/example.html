@@ -16,8 +16,8 @@
 <div class="tar" style="-webkit-transform: translate3d(100px,100px,0)"></div>
 <script>
     (function () {
-        remote.log( document.querySelector( ".tar" ).style );
-//        console.log( JSON.parse( JSON.stringify( document.querySelector( ".tar" ).style ) ) )
+//        console.log( document.querySelector( ".tar" ).style );
+        remote.log( document.querySelector( ".tar" ).style.webkitTransform )
     })();
 </script>
 </body>
