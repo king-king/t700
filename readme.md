@@ -90,6 +90,7 @@ util.insertCSSRules({
 * 使用方法
     * 运行debug/debug-server/DBserver.js 开启服务器
     * 在浏览器访问debug/view/index.html该页面可以实时看到远程客户端的log数据
+    * 在index.html页面上端有一个颜色条，绿色表示可用，橘黄色表示不可用，检查服务器是否开启或网络。
     * 在移动端引用debug/browser/debug.js脚本，用remote.log(text)打印需要调试的内容
 
 * 说明
