@@ -6,8 +6,6 @@ var wss;
 
 
 var httpServer = http.createServer( function ( req, res ) {
-    console.log( "http connect" );
-    console.log( req.url );
     switch ( req.url ) {
         case "/log":
             var data = "";
@@ -41,11 +39,9 @@ wss = new WebSocketServer( {
 } );
 
 wss.on( 'connection', function connection( ws ) {
-    console.log( "ws connect" );
-
     ws.on( 'message', function incoming( message ) {
         console.log( 'received: %s', message );
     } );
 
-    ws.send( 'something' );
+    ws.send( '终端已经链接' );
 } );
