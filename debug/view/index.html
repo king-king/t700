@@ -41,33 +41,49 @@
         .clear:hover {
             opacity: 0.8;
         }
+
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            opacity: 0.7;
+        }
     </style>
 </head>
 <body>
+<div class="header"></div>
 <div class="clear">clear</div>
 <div class="content"></div>
 <script>
-    var content = document.querySelector( ".content" );
+    var content = document.querySelector( ".content" ),
+            header = document.querySelector( ".header" );
 
     document.querySelector( ".clear" ).onclick = function () {
         content.innerHTML = "";
     };
 
-
     var ws = new WebSocket( "ws://localhost:8383" );
+
     ws.onopen = function () {
-        console.log( "open" );
+        header.style.background = "green";
     };
+
     ws.onmessage = function ( evt ) {
         console.log( evt.data );
         var div = document.createElement( "div" );
         div.innerHTML = "<font color='green'>>></font> " + evt.data;
         content.appendChild( div );
     };
+
     ws.onclose = function ( evt ) {
+        header.style.background = "blue";
         console.log( "WebSocketClosed!" );
     };
+
     ws.onerror = function ( evt ) {
+        header.style.background = "orangered";
         console.log( "WebSocketError!" );
     };
 
