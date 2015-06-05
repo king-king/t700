@@ -6,9 +6,15 @@
     window.remote = {
         log : function ( message ) {
             var xhr = new XMLHttpRequest();
+            try {
+                var mess = JSON.parse( JSON.stringify( message ) );
+            }
+            catch ( e ) {
+                mess = message.toString();
+            }
             xhr.open( "post", "http://localhost:8383/log", true );
             xhr.send( JSON.stringify( {
-                message : message
+                message : mess
             } ) );
         }
     }

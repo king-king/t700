@@ -14,7 +14,7 @@ var httpServer = http.createServer( function ( req, res ) {
             } );
             req.on( "end", function () {
                 wss && wss.clients.forEach( function each( client ) {
-                    client.send( JSON.parse( data ).message );
+                    client.send( JSON.stringify( JSON.parse( data ).message ) );
                 } );
                 res.writeHead( 200, {
                     'Content-Type' : 'text/plain',

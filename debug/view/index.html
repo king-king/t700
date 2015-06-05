@@ -47,6 +47,11 @@
 <div class="clear">clear</div>
 <div class="content"></div>
 <script>
+    var content = document.querySelector( ".content" );
+
+    document.querySelector( ".clear" ).onclick = function () {
+        content.innerHTML = "";
+    };
 
 
     var ws = new WebSocket( "ws://localhost:8383" );
@@ -56,8 +61,8 @@
     ws.onmessage = function ( evt ) {
         console.log( evt.data );
         var div = document.createElement( "div" );
-        div.innerHTML = evt.data;
-        document.querySelector( ".content" ).appendChild( div );
+        div.innerHTML = "<font color='green'>>></font> " + evt.data;
+        content.appendChild( div );
     };
     ws.onclose = function ( evt ) {
         console.log( "WebSocketClosed!" );
