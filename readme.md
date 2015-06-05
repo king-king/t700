@@ -59,9 +59,9 @@ el.onTap(function(){
 ```js
 el.css({
     background:"red",
-    position:absolute,
-    top:50%,
-    left:50%,
+    position:"absolute",
+    top:"50%",
+    left:"50%",
     "-webkit-transform":"translate(-50%,-50%,0)",
     width: document.body.offsetWidth/5<<0 +"px",
     height: document.body.offsetHeight/5<<0 +"px"
