@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--<script src="http://localhost:8383/ws/server/server.js"></script>-->
+<script>
+    var ws = new WebSocket( "ws://localhost:8383" );
+    ws.onopen = function () {
+        console.log( "open" );
+        ws.send( "hello" );
+    };
+    ws.onmessage = function ( evt ) {
+        console.log( evt.data )
+    };
+    ws.onclose = function ( evt ) {
+        console.log( "WebSocketClosed!" );
+    };
+    ws.onerror = function ( evt ) {
+        console.log( "WebSocketError!" );
+    };
+
+
+</script>
+</body>
+</html>
