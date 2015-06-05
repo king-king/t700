@@ -88,9 +88,9 @@ util.insertCSSRules({
 
 ##### 远程调试
 * 使用方法
-1. 运行debug/debug-server/DBserver.js 开启服务器
-2. 在浏览器访问debug/view/index.html该页面可以实时看到远程客户端的log数据
-3. 在移动端引用debug/browser/debug.js脚本，用remote.log(text)打印需要调试的内容
+    * 运行debug/debug-server/DBserver.js 开启服务器
+    * 在浏览器访问debug/view/index.html该页面可以实时看到远程客户端的log数据
+    * 在移动端引用debug/browser/debug.js脚本，用remote.log(text)打印需要调试的内容
 
 * 说明
 目前只支持单向调试，也就是移动端->pc浏览器，pc端不支持交互，无法在pc端输入命令操控移动端。
