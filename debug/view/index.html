@@ -22,7 +22,7 @@
             font-weight: bolder;
         }
 
-        .clear {
+        .clear, .stop, .connect {
             font-size: 15px;
             font-weight: bolder;
             width: 50px;
@@ -32,14 +32,26 @@
             margin-top: 25px;
             border-radius: 50px;
             color: white;
-            background: lightskyblue;
             cursor: pointer;
             margin-left: 50px;
             -webkit-user-select: none;
+            display: inline-block;
         }
 
-        .clear:hover {
+        .clear {
+            background: lightskyblue;
+        }
+
+        .clear:hover, .stop:hover, .connect:hover {
             opacity: 0.8;
+        }
+
+        .stop {
+            background: red;
+        }
+
+        .connect {
+            background: green;
         }
 
         .header {
@@ -55,37 +67,58 @@
 <body>
 <div class="header"></div>
 <div class="clear">clear</div>
+<div class="stop">stop</div>
+<div class="connect">connect</div>
+
 <div class="content"></div>
 <script>
     var content = document.querySelector( ".content" ),
             header = document.querySelector( ".header" );
+    var ws;
 
     document.querySelector( ".clear" ).onclick = function () {
         content.innerHTML = "";
     };
 
-    var ws = new WebSocket( "ws://localhost:8383" );
-
-    ws.onopen = function () {
-        header.style.background = "green";
+    document.querySelector( ".stop" ).onclick = function () {
+        header.classList.contains( "open" ) && ws.close();
     };
 
-    ws.onmessage = function ( evt ) {
-        console.log( evt.data );
-        var div = document.createElement( "div" );
-        div.innerHTML = "<font color='green'>>></font> " + evt.data;
-        content.appendChild( div );
+    document.querySelector( ".connect" ).onclick = function () {
+        if ( !header.classList.contains( "open" ) ) {
+            open();
+        }
     };
 
-    ws.onclose = function ( evt ) {
-        header.style.background = "orangered";
-        console.log( "WebSocketClosed!" );
-    };
+    open();
 
-    ws.onerror = function ( evt ) {
-        header.style.background = "orangered";
-        console.log( "WebSocketError!" );
-    };
+    function open() {
+        content.innerHTML = "";
+        ws = new WebSocket( "ws://localhost:8383" );
+        ws.onopen = function () {
+            header.classList.add( "open" );
+            header.style.background = "green";
+        };
+
+        ws.onmessage = function ( evt ) {
+            console.log( evt.data );
+            var div = document.createElement( "div" );
+            div.innerHTML = "<font color='green'>>></font> " + evt.data;
+            content.appendChild( div );
+        };
+
+        ws.onclose = function ( evt ) {
+            header.classList.remove( "open" );
+            header.style.background = "orangered";
+            console.log( "WebSocketClosed!" );
+        };
+
+        ws.onerror = function ( evt ) {
+            header.classList.remove( "open" );
+            header.style.background = "orangered";
+            console.log( "WebSocketError!" );
+        };
+    }
 
 
 </script>

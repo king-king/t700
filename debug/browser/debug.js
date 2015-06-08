@@ -12,7 +12,7 @@
 			catch ( e ) {
 				mess = message.toString();
 			}
-			xhr.open( "POST", "http://192.168.1.107:8383/log", true );
+			xhr.open( "POST", "http://192.168.0.128:8383/log", true );
 			xhr.setRequestHeader( "Content-Type", "application/x-www-form-urlencoded" );
 			xhr.send( JSON.stringify( {
 				message : mess
