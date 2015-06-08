@@ -18,7 +18,7 @@
 动为page添加的css类，如下：“.page-0.animate”。
 
 
-### 扩展：每个Node元素都具备的方法
+### 每个Node元素都具备的方法
 
 **remove()：用来从页面上移除该元素，不必关心该DOM元素是否在页面上**
 ```js
@@ -68,9 +68,9 @@ el.css({
 });
 ````
 
+### 每个Node元素都具备的方法
 
-### basic.js 中的接口
-该文件中的接口都在util名字空间下
+### util命名空间中的接口（需要引用basic.js）
 
 **insertCSSRules(obj)**
 ```js
