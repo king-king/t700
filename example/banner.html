@@ -3,7 +3,8 @@
 <head lang="en">
     <meta charset="utf-8">
     <meta name="mobileoptimized" content="0"/>
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="width=]
+    -width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <meta name="screen-orientation" content="portrait">
@@ -11,7 +12,12 @@
     <title></title>
     <link href="../lib/style/basic.css" rel="stylesheet">
     <style>
-
+        .banner {
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+         }
     </style>
 </head>
 <body>
@@ -31,6 +37,20 @@
     (function () {
 
         function makeBanner( banner, data ) {
+            var content = util.createElement( "div", {classList : "content"}, banner );
+            var curindex = 0;
+            var items = [];
+            util.loopArray( data, function ( src ) {
+                                var item = util.createElement( "div", {
+                    classList : "item",
+                    css : {
+                        background : "url(" + src + ")",
+                        "background-size" : "cover"
+                    }
+                } );
+                items.push( item );
+            } );
+
 
         }
 
