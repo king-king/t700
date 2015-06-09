@@ -45,7 +45,7 @@
 
         function makeBanner( banner, data ) {
             var content = util.createElement( "div", {classList : "content"}, banner );
-            var curindex = 0;
+            var curIndex = 0;
             var width = content.offsetWidth;
             var items = {
                 all : [],
@@ -85,7 +85,7 @@
                 content.appendChild( item.next() );
             }
 
-            initPosition( items.fetch( curindex ) );
+            initPosition( items.fetch( curIndex ) );
 
             function removeItems( item ) {
                 item.remove();
@@ -98,23 +98,23 @@
             banner.onDrag( {
                 x : true,
                 onMove : function ( arg ) {
-                    util.loopArray( [items.fetch( curindex ), items.fetch( curindex ).pre(), items.fetch( curindex ).next()], function ( item ) {
+                    util.loopArray( [items.fetch( curIndex ), items.fetch( curIndex ).pre(), items.fetch( curIndex ).next()], function ( item ) {
                         item.transform( item.wx += arg.dx, 0, 0 );
                     } );
                 },
                 onEnd : function ( arg ) {
                     var count = 0;
-                    util.loopArray( [items.fetch( curindex ).pre(), items.fetch( curindex ), items.fetch( curindex ).next()], function ( item, i ) {
+                    util.loopArray( [items.fetch( curIndex ).pre(), items.fetch( curIndex ), items.fetch( curIndex ).next()], function ( item, i ) {
                         util.transition( item, {
                             "-webkit-transform" : "translate3d(" + (arg.dx < 0 ? width * (i - 2) : width * i) + "px,0,0)",
                             "-webkit-transition" : "0.2s linear"
                         }, function () {
                             count += 1;
                             if ( count == 2 ) {
-                                removeItems( items.fetch( curindex ) );
-                                curindex = (curindex + (arg.dx < 0 ? 1 : -1) + items.length) % items.length;
-                                handler.onCut && handler.onCut( curindex );
-                                initPosition( items.fetch( curindex ) );
+                                removeItems( items.fetch( curIndex ) );
+                                curIndex = (curIndex + (arg.dx < 0 ? 1 : -1) + items.length) % items.length;
+                                handler.onCut && handler.onCut( curIndex );
+                                initPosition( items.fetch( curIndex ) );
                                 banner.isTouching = false;
                             }
                         } )
@@ -122,16 +122,20 @@
                 }
             } );
 
+            return handler;
         }
 
         system.onopen = function () {
-            makeBanner( Pages[0].querySelector( ".banner" ), [
+            var handler = makeBanner( Pages[0].querySelector( ".banner" ), [
                 "img/1.jpg",
                 "img/2.jpg",
                 "img/3.jpg",
                 "img/4.jpg",
                 "img/5.jpg"
             ] );
+            handler.onCut = function ( index ) {
+                console.log( index )
+            }
         };
 
 
