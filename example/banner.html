@@ -40,6 +40,7 @@
 
 <script src="../lib/util/basic.js"></script>
 <script src="../lib/util/build.js"></script>
+<script src="../lib/util/easing.js"></script>
 <script>
     (function () {
 
@@ -131,13 +132,13 @@
 
                 function cut() {
                     clearTimeout( timeID );
-                    util.doAnimate( 200, function ( process ) {
+                    util.doAnimate( 300, function ( process ) {
                         util.loopArray( [
                             items.fetch( curIndex ).pre(),
                             items.fetch( curIndex ),
                             items.fetch( curIndex ).next()
                         ], function ( item, i ) {
-                            item.transform( -width * process + width * (i - 1), 0, 0 );
+                            item.transform( -width * easingEffects.easeOutQuart( process ) + width * (i - 1), 0, 0 );
                         } )
                     }, function () {
                         removeItems( items.fetch( curIndex ) );
