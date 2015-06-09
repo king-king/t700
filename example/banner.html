@@ -122,6 +122,36 @@
                 }
             } );
 
+            var timeID;
+
+            function autoSlide() {
+                function timer( func, delay ) {
+                    timeID = setTimeout( func, delay );
+                }
+
+                function cut() {
+                    clearTimeout( timeID );
+                    util.doAnimate( 200, function ( process ) {
+                        util.loopArray( [
+                            items.fetch( curIndex ).pre(),
+                            items.fetch( curIndex ),
+                            items.fetch( curIndex ).next()
+                        ], function ( item, i ) {
+                            item.transform( -width * process + width * (i - 1), 0, 0 );
+                        } )
+                    }, function () {
+                        removeItems( items.fetch( curIndex ) );
+                        curIndex = (curIndex + 1 + items.length) % items.length;
+                        handler.onCut && handler.onCut( curIndex );
+                        initPosition( items.fetch( curIndex ) );
+                        timer( cut, 3000 );
+                    } );
+                }
+
+                timeID = timer( cut, 3000 );
+            }
+
+            autoSlide();
             return handler;
         }
 
