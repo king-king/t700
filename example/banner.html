@@ -98,6 +98,9 @@
 
             banner.onDrag( {
                 x : true,
+                onStart : function () {
+                    clearTimeout( timeID );
+                },
                 onMove : function ( arg ) {
                     util.loopArray( [items.fetch( curIndex ), items.fetch( curIndex ).pre(), items.fetch( curIndex ).next()], function ( item ) {
                         item.transform( item.wx += arg.dx, 0, 0 );
@@ -117,6 +120,7 @@
                                 handler.onCut && handler.onCut( curIndex );
                                 initPosition( items.fetch( curIndex ) );
                                 banner.isTouching = false;
+                                autoSlide();
                             }
                         } )
                     } );
@@ -149,7 +153,7 @@
                     } );
                 }
 
-                timeID = timer( cut, 3000 );
+                timer( cut, 3000 );
             }
 
             autoSlide();
