@@ -106,7 +106,7 @@
                     var count = 0;
                     util.loopArray( [items.fetch( curindex ).pre(), items.fetch( curindex ), items.fetch( curindex ).next()], function ( item, i ) {
                         util.transition( item, {
-                            "-webkit-transform" : "translate3d(" + (arg.dx < 0 ? -width * (i - 2) : width * i) + "px,0,0)",
+                            "-webkit-transform" : "translate3d(" + (arg.dx < 0 ? width * (i - 2) : width * i) + "px,0,0)",
                             "-webkit-transition" : "0.2s linear"
                         }, function () {
                             count += 1;
