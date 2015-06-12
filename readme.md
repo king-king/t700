@@ -112,7 +112,7 @@ util.serialTask(util.map(images,function(src,i){
         var img=new Image();
         img.src=src;
         img.onload=function(){
-            console.log(i);// 打印的顺序不是固定的
+            console.log(i);// 打印的顺序一定是顺序的：0,1,2
             done();
         }
    }
