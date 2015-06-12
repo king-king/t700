@@ -84,6 +84,42 @@ util.insertCSSRules({
 })
 ```
 
+**concurrentTask(tasks,callback)**
+并发执行task(是个Function)
+```js
+var images=["1.png","2.png","3.png"];
+util.concurrentTask(util.map(images,function(src,i){
+   return function(done){
+        var img=new Image();
+        img.src=src;
+        img.onload=function(){
+            console.log(i);// 打印的顺序不是固定的
+            done();
+        }
+   }
+}),function(){
+    console.log("end");
+});
+```
+
+**serialTask(tasks,callback)**
+串行执行task(是个Function)
+```js
+var images=["1.png","2.png","3.png"];
+util.serialTask(util.map(images,function(src,i){
+   return function(done){
+        var img=new Image();
+        img.src=src;
+        img.onload=function(){
+            console.log(i);// 打印的顺序不是固定的
+            done();
+        }
+   }
+}),function(){
+    console.log("end");
+});
+```
+
 ###  附录
 
 ##### 远程调试
