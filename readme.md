@@ -90,6 +90,9 @@ util.insertCSSRules({
 var images=["1.png","2.png","3.png"];
 util.concurrentTask(util.map(images,function(src,i){
    return function(done){
+        /*
+            do your task,for example:
+        */ 
         var img=new Image();
         img.src=src;
         img.onload=function(){
@@ -109,6 +112,9 @@ util.concurrentTask(util.map(images,function(src,i){
 var images=["1.png","2.png","3.png"];
 util.serialTask(util.map(images,function(src,i){
    return function(done){
+        /*
+            do your task,for example:
+        */ 
         var img=new Image();
         img.src=src;
         img.onload=function(){
