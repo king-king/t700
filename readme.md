@@ -87,6 +87,51 @@ util.insertCSSRules({
 * tasks[Array<Function>] 存放任务的数组
 * callback[Function] 所有任务执行完毕后的回掉
 ```js
+
+/*
+    考虑一个需求，并发下载3张图片，全部下载完毕后打印“end”
+*/
+// 朴素写法
+util.concurrentTask([
+    function(done){
+        var img=new Image();
+        img.src="1.png";
+        img.onload=function(){
+            /*
+                do something
+            */
+            done();
+        }
+    },
+    function(done){
+        var img=new Image();
+        img.src="2.png";
+        img.onload=function(){
+            /*
+                do something
+            */
+            done();
+        }
+    },
+    function(done){
+        var img=new Image();
+        img.src="3.png";
+        img.onload=function(){
+            /*
+                do something
+            */
+            done();
+        }
+    }
+],function(){
+    /*
+        all tasks have been done
+    */
+    console.log("end");
+});
+
+
+// 下面是利用util.map紧凑型写法
 var images=["1.png","2.png","3.png"];
 util.concurrentTask(util.map(images,function(src,i){
    return function(done){
@@ -103,6 +148,7 @@ util.concurrentTask(util.map(images,function(src,i){
 }),function(){
     console.log("end");
 });
+
 ```
 
 **serialTask(tasks,callback)**
