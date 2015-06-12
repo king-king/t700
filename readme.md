@@ -68,7 +68,6 @@ el.css({
 });
 ````
 
-### 每个Node元素都具备的方法
 
 ### util命名空间中的接口（需要引用basic.js）
 
@@ -85,7 +84,8 @@ util.insertCSSRules({
 ```
 
 **concurrentTask(tasks,callback)**
-并发执行task(是个Function)
+* tasks[Array<Function>] 存放任务的数组
+* callback[Function] 所有任务执行完毕后的回掉
 ```js
 var images=["1.png","2.png","3.png"];
 util.concurrentTask(util.map(images,function(src,i){
@@ -103,7 +103,8 @@ util.concurrentTask(util.map(images,function(src,i){
 ```
 
 **serialTask(tasks,callback)**
-串行执行task(是个Function)
+* tasks[Array<Function>] 存放任务的数组
+* callback[Function] 所有任务执行完毕后的回掉
 ```js
 var images=["1.png","2.png","3.png"];
 util.serialTask(util.map(images,function(src,i){
