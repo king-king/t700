@@ -83,7 +83,7 @@ util.insertCSSRules({
 })
 ```
 
-**concurrentTask(tasks,callback)**
+**concurrentTask(tasks,callback)**并发执行tasks中的任务
 * tasks[Array<Function>] 存放任务的数组
 * callback[Function] 所有任务执行完毕后的回掉
 ```js
@@ -151,7 +151,7 @@ util.concurrentTask(util.map(images,function(src,i){
 
 ```
 
-**serialTask(tasks,callback)**
+**serialTask(tasks,callback)**串行执行tasks中的任务
 * tasks[Array<Function>] 存放任务的数组
 * callback[Function] 所有任务执行完毕后的回掉
 ```js
