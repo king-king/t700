@@ -132,8 +132,7 @@ util.concurrentTask([
 
 
 // 下面是利用util.map紧凑型写法
-var images=["1.png","2.png","3.png"];
-util.concurrentTask(util.map(images,function(src,i){
+util.concurrentTask(util.map(["1.png","2.png","3.png"],function(src,i){
    return function(done){
         /*
             do your task,for example:
@@ -155,8 +154,7 @@ util.concurrentTask(util.map(images,function(src,i){
 * tasks[Array<Function>] 存放任务的数组
 * callback[Function] 所有任务执行完毕后的回掉
 ```js
-var images=["1.png","2.png","3.png"];
-util.serialTask(util.map(images,function(src,i){
+util.serialTask(util.map(["1.png","2.png","3.png"],function(src,i){
    return function(done){
         /*
             do your task,for example:
