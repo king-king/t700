@@ -38,26 +38,24 @@
     <div class="page">4</div>
 </div>
 
-<script src="../lib/util/basic.js"></script>
-<script src="../lib/util/build.js"></script>
-<script src="../lib/util/easing.js"></script>
+
+<script src="../lib/package.js"></script>
 <script>
-    (function () {
-
-        system.onopen = function () {
-            var handler = util.makeBanner( Pages[0].querySelector( ".banner" ), [
-                "img/1.jpg",
-                "img/2.jpg",
-                "img/3.jpg",
-                "img/4.jpg",
-                "img/5.jpg"
-            ] );
-            handler.onCut = function ( index ) {
-                console.log( index )
-            }
-        };
-
-    })();
+    main( function () {
+        var system = imports( "../lib/util/build.js" );
+        var util = imports( "../lib/util/basic.js" );
+        system.run();
+        var handler = util.makeBanner( system.pages[0].querySelector( ".banner" ), [
+            "img/1.jpg",
+            "img/2.jpg",
+            "img/3.jpg",
+            "img/4.jpg",
+            "img/5.jpg"
+        ] );
+        handler.onCut = function ( index ) {
+            console.log( index )
+        }
+    } );
 </script>
 </body>
 </html>
