@@ -1,26 +1,30 @@
 /**
  * Created by killian on 2015/6/3.
  */
-(function () {
-    var load = document.querySelector( '.loading-page' );
+main( function () {
+    var system = imports( "../../../lib/util/build.js" );
+    var Pages = system.pages;
+    setTimeout( function () {
+        system.run();
+    }, 3000 );
     musicFun();
     function musicFun() {
         var playBtn = document.querySelector( '.music-icon' );
-        var musicobj = document.getElementById( 'bg_audio' );
+        var musicObj = document.getElementById( 'bg_audio' );
         playBtn.onclick = function () {
-            if ( musicobj.paused ) {
+            if ( musicObj.paused ) {
                 playBtn.classList.add( 'play' );
-                musicobj.play();
+                musicObj.play();
             }
             else {
                 playBtn.classList.remove( 'play' );
-                musicobj.pause();
+                musicObj.pause();
             }
 
         };
 
         document.addEventListener( 'WeixinJSBridgeReady', function () {
-            musicobj.play();
+            musicObj.play();
         }, false );
     }
 
@@ -33,20 +37,20 @@
     }
 
     var leftBtn = Pages[4].querySelector( '.leftBtn' ), middleBtn = Pages[4].querySelector( '.middleBtn' ), rightBtn = Pages[4].querySelector( '.rightBtn' );
-    var leftCentent = Pages[4].querySelector( '.left-content' ), middleContent = Pages[4].querySelector( '.middle-content' ), rightContent = Pages[4].querySelector( '.right-content' );
+    var leftContent = Pages[4].querySelector( '.left-content' ), middleContent = Pages[4].querySelector( '.middle-content' ), rightContent = Pages[4].querySelector( '.right-content' );
     leftBtn.onclick = function () {
-        leftCentent.style.display = 'block';
+        leftContent.style.display = 'block';
         middleContent.style.display = 'none';
         rightContent.style.display = 'none';
     };
     middleBtn.onclick = function () {
-        leftCentent.style.display = 'none';
+        leftContent.style.display = 'none';
         middleContent.style.display = 'block';
         rightContent.style.display = 'none';
     };
     rightBtn.onclick = function () {
-        leftCentent.style.display = 'none';
+        leftContent.style.display = 'none';
         middleContent.style.display = 'none';
         rightContent.style.display = 'block';
     }
-}());
+} );
