@@ -4,8 +4,9 @@
 main( function () {
     var system = imports( "../lib/util/build.js" );
     var util = imports( "../lib/util/basic.js" );
+    var plugin = imports( "../lib/util/plugin.js" );
     system.run();
-    var handler = util.makeBanner( system.pages[0].querySelector( ".banner" ), [
+    var handler = plugin.makeBanner( system.pages[0].querySelector( ".banner" ), [
         "img/1.jpg",
         "img/2.jpg",
         "img/3.jpg",
